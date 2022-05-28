@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Cocktail {
+  id          String       @id @default(uuid())
+  name        String?
+  ingredients Ingredient[]
+}
+
+model Ingredient {
+  id     String @id @default(uuid())
+  name   String
+  amount Float
+  unit   String
+
+  cocktail   Cocktail @relation(fields: [cocktailId], references: [id])
+  cocktailId String
+
+}
