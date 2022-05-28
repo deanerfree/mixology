@@ -16,9 +16,9 @@ router.get("/test", async (req, res) => {
 router.get("/drink", async (req, res) => {
 	try {
 		const drinks = await axios.get(
-			"www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin"
+			"https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita"
 		)
-		res.json(drinks)
+		res.status(200).send(drinks)
 	} catch (err) {
 		res.status(404).json({ message: err.message })
 	}
