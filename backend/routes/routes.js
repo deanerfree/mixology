@@ -18,7 +18,8 @@ router.get("/drink", async (req, res) => {
 		const drinks = await axios.get(
 			"https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita"
 		)
-		res.status(200).send(drinks)
+		console.log(drinks.data.drinks)
+		res.send(drinks.data.drinks)
 	} catch (err) {
 		res.status(404).json({ message: err.message })
 	}
